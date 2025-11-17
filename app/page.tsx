@@ -1,9 +1,20 @@
 import Image from "next/image";
+import ProductCard from "@/components/product-card/product-card";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <ProductCard
+          id={1}
+          title={"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"}
+          price={109.95}
+          description={
+            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday"
+          }
+          category={"men's clothing"}
+          image={"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"}
+        ></ProductCard>
         <Image
           className="dark:invert"
           src="/next.svg"
