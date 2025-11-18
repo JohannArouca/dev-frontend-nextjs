@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ProductCard from "../../components/product-card/product-card";
 
 type Product = {
@@ -23,14 +24,16 @@ export default async function ProductsPage() {
 
       <div className="flex flex-wrap gap-6 justify-start mt-5">
         {products.map((product) => (
-          <ProductCard
-            id={product.id}
-            title={product.title}
-            price={product.price}
-            description={product.description}
-            category={product.category}
-            image={product.image}
-          />
+          <Link key={product.id} href={`/products/${product.id}`}>
+            <ProductCard
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              description={product.description}
+              category={product.category}
+              image={product.image}
+            />
+          </Link>
         ))}
       </div>
     </div>
