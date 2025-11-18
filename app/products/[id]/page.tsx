@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
 type Product = {
   id: number;
   title: string;
@@ -48,6 +51,16 @@ export default async function ProductPage(props: {
           </p>
 
           <p className="leading-relaxed text-gray-700">{product.description}</p>
+
+          <div className="mt-6 flex justify-end items-center gap-4">
+            <Link
+              className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
+              href={`/products`}
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Voltar
+            </Link>
+          </div>
         </div>
       </div>
     </div>
