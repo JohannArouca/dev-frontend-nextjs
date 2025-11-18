@@ -18,7 +18,7 @@ export default function ProductCard({
   image,
 }: ProductCardProps) {
   return (
-    <div className="cursor-pointer group min-w-[250px] max-w-[270px] border border-gray-200 rounded-xl p-4 flex flex-col bg-white shadow transition-all duration-300 hover:shadow-xl">
+    <div className="cursor-pointer group min-w-[250px] max-w-[270px] h-full border border-gray-200 rounded-xl p-4 flex flex-col bg-white shadow transition-all duration-300 hover:shadow-xl">
       <div className="relative w-full aspect-square">
         <Image src={image} alt={title} fill className="object-contain" />
       </div>

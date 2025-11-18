@@ -22,7 +22,7 @@ export default async function ProductsPage() {
       <h1 className="text-2xl font-bold mb-2">Produtos</h1>
       <span className="text-lg">{products.length} produtos encontrados</span>
 
-      <div className="flex flex-wrap gap-6 justify-start mt-5">
+      <div className="flex flex-wrap gap-6 justify-start mt-5 items-stretch">
         {products.map((product) => (
           <Link key={product.id} href={`/products/${product.id}`}>
             <ProductCard
