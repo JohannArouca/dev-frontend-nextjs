@@ -32,7 +32,7 @@ export default function ProductCard({
       <span className="text-sm mt-auto line-clamp-3 mb-2">{description}</span>
 
       <span className="flex justify-end text-2xl font-bold text-blue-600 mt-auto">
-        R${price.toFixed(2)}
+        ${price.toFixed(2)}
       </span>
     </div>
   );

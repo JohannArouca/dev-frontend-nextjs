@@ -47,7 +47,7 @@ export default async function ProductPage(props: {
           </span>
 
           <p className="text-2xl font-bold text-blue-600 mb-4">
-            R${product.price.toFixed(2)}
+            ${product.price.toFixed(2)}
           </p>
 
           <p className="leading-relaxed text-gray-700">{product.description}</p>
