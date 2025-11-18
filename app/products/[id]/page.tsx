@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
+
+import { DeleteDialog } from "../../../components/delete-dialog/delete-dialog";
 
 type Product = {
   id: number;
@@ -53,6 +55,16 @@ export default async function ProductPage(props: {
           <p className="leading-relaxed text-gray-700">{product.description}</p>
 
           <div className="mt-6 flex justify-end items-center gap-4">
+            <DeleteDialog
+              id={product.id}
+              trigger={
+                <button className="flex items-center gap-2 px-4 py-2 text-red-700 border border-red-200 rounded-lg cursor-pointer hover:bg-red-100 transition">
+                  <Trash className="w-4 h-4" />
+                  Excluir
+                </button>
+              }
+            />
+
             <Link
               className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
               href={`/products`}
