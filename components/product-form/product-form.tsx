@@ -1,17 +1,43 @@
 "use client";
 
-import { Product } from "@/types/product";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { postProduct } from "@/app/lib/products/post-product";
 
-interface ProductFormProps {
-  product: Product;
-  setProduct: (value: any) => void;
-}
+export default function ProductForm() {
+  const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState({
+    id: 0,
+    title: "",
+    price: 0,
+    description: "",
+    category: "",
+    image: "",
+  });
+  const router = useRouter();
 
-export default function ProductForm({ product, setProduct }: ProductFormProps) {
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     setProduct({ ...product, [e.target.name]: e.target.value });
+  }
+
+  async function handleConfirm() {
+    try {
+      setLoading(true);
+
+      await postProduct(product);
+
+      router.push("/products");
+      router.refresh();
+    } catch (error) {
+      console.error("Erro ao criar produto:", error);
+      alert("Ocorreu um problema ao criar o produto.");
+    } finally {
+      setLoading(false);
+      alert("Produto criado com sucesso!");
+    }
   }
 
   return (
@@ -59,6 +85,23 @@ export default function ProductForm({ product, setProduct }: ProductFormProps) {
         value={product.image}
         onChange={handleChange}
       />
+
+      <div className="mt-6 flex justify-end w-full items-center gap-4">
+        <Link
+          className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
+          href={`/products`}
+        >
+          Cancelar
+        </Link>
+
+        <button
+          className="flex items-center gap-2 px-4 py-2 text-neutral-50 bg-neutral-950 border border-neutral-950 rounded-lg cursor-pointer hover:bg-neutral-800 transition"
+          onClick={handleConfirm}
+          disabled={loading}
+        >
+          Confirmar
+        </button>
+      </div>
     </form>
   );
 }
