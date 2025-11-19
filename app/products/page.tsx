@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProductCard from "../../components/product-card/product-card";
+import { getProducts } from "../lib/products/get-products";
 
 type Product = {
   id: number;
@@ -11,11 +12,7 @@ type Product = {
 };
 
 export default async function ProductsPage() {
-  const res = await fetch("https://fakestoreapi.com/products", {
-    cache: "no-store",
-  });
-
-  const products: Product[] = await res.json();
+  const products: Product[] = await getProducts();
 
   return (
     <div className="p-6 bg-gray-100">

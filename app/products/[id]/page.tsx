@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Trash } from "lucide-react";
-
+import { getProduct } from "@/app/lib/products/get-product";
 import { DeleteDialog } from "../../../components/delete-dialog/delete-dialog";
 
 type Product = {
@@ -12,21 +12,11 @@ type Product = {
   image: string;
 };
 
-async function getProduct(id: string): Promise<Product> {
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-
-  if (!res.ok) {
-    throw new Error("Erro ao buscar produto");
-  }
-
-  return res.json();
-}
-
 export default async function ProductPage(props: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: number }>;
 }) {
   const { id } = await props.params;
-  const product = await getProduct(id);
+  const product: Product = await getProduct(id);
 
   return (
     <div className="max-w-3xl mx-auto p-6">
