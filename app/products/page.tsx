@@ -1,15 +1,7 @@
 import Link from "next/link";
 import ProductCard from "../../components/product-card/product-card";
 import { getProducts } from "../lib/products/get-products";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image: string;
-  category: string;
-};
+import { Product } from "@/types/product";
 
 export default async function ProductsPage() {
   const products: Product[] = await getProducts();

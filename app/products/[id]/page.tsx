@@ -2,15 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, Trash } from "lucide-react";
 import { getProduct } from "@/app/lib/products/get-product";
 import { DeleteDialog } from "../../../components/delete-dialog/delete-dialog";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
+import { Product } from "@/types/product";
 
 export default async function ProductPage(props: {
   params: Promise<{ id: number }>;
