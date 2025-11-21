@@ -9,7 +9,9 @@ import { putProduct } from "@/app/lib/products/put-product";
 import Spinner from "../spinner/spinnet";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
-
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 interface ProductFormProps {
   initialProduct?: Product;
 }
@@ -29,10 +31,8 @@ export default function ProductForm({ initialProduct }: ProductFormProps) {
   }, [initialProduct]);
   const router = useRouter();
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+  function handleChange(name: string, value: string) {
+    setProduct({ ...product, [name]: value });
   }
 
   async function handleConfirm() {
@@ -62,49 +62,36 @@ export default function ProductForm({ initialProduct }: ProductFormProps) {
   }
 
   return (
-    <form className="w-full flex flex-col">
-      <span className="text-sm mt-auto mb-1">Título</span>
-      <input
-        className="mb-4 border p-2 rounded"
-        type="text"
-        name="title"
+    <form onSubmit={handleConfirm} className="w-full flex flex-col space-y-4">
+      <Label>Título</Label>
+      <Input
         value={product.title}
-        onChange={handleChange}
+        onChange={(e) => handleChange("title", e.target.value)}
       />
 
-      <span className="text-sm mt-auto mb-1">Preço</span>
-      <input
-        className="mb-4 border p-2 rounded"
+      <Label>Preço</Label>
+      <Input
         type="number"
-        name="price"
         value={product.price}
-        onChange={handleChange}
+        onChange={(e) => handleChange("price", e.target.value)}
       />
 
-      <span className="text-sm mt-auto mb-1">Descrição</span>
-      <textarea
-        className="mb-4 border p-2 rounded"
-        name="description"
+      <Label>Descrição</Label>
+      <Textarea
         value={product.description}
-        onChange={handleChange}
+        onChange={(e) => handleChange("description", e.target.value)}
       />
 
-      <span className="text-sm mt-auto mb-1">Categoria</span>
-      <input
-        className="mb-4 border p-2 rounded"
-        type="text"
-        name="category"
+      <Label>Categoria</Label>
+      <Input
         value={product.category}
-        onChange={handleChange}
+        onChange={(e) => handleChange("category", e.target.value)}
       />
 
-      <span className="text-sm mt-auto mb-1">URL da imagem</span>
-      <input
-        className="border p-2 rounded"
-        type="text"
-        name="image"
+      <Label>URL da imagem</Label>
+      <Input
         value={product.image}
-        onChange={handleChange}
+        onChange={(e) => handleChange("image", e.target.value)}
       />
 
       <div className="mt-6 flex justify-end w-full items-center gap-4">
