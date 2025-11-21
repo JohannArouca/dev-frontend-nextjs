@@ -13,6 +13,7 @@ import {
 import { deleteProduct } from "../../app/lib/products/delete-product";
 import { useRouter } from "next/navigation";
 import Spinner from "../spinner/spinnet";
+import { toast } from "sonner";
 
 interface DeleteDialogProps {
   id: number;
@@ -34,11 +35,11 @@ export function DeleteDialog({ id, trigger }: DeleteDialogProps) {
       router.refresh();
     } catch (error) {
       console.error("Erro ao excluir:", error);
-      alert("Ocorreu um problema ao excluir.");
+      toast.error("Ocorreu um problema ao excluir.");
     } finally {
       setLoading(false);
       setOpen(false);
-      alert("Produto excluído com sucesso!");
+      toast.success("Produto excluído com sucesso!");
     }
   }
 

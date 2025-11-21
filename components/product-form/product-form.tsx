@@ -7,6 +7,7 @@ import { postProduct } from "@/app/lib/products/post-product";
 import { Product } from "@/types/product";
 import { putProduct } from "@/app/lib/products/put-product";
 import Spinner from "../spinner/spinnet";
+import { toast } from "sonner";
 
 interface ProductFormProps {
   initialProduct?: Product;
@@ -46,14 +47,16 @@ export default function ProductForm({ initialProduct }: ProductFormProps) {
         `Erro ao ${initialProduct ? "editar" : "criar"} produto:`,
         error
       );
-      alert(
+      toast.error(
         `Ocorreu um problema ao ${
           initialProduct ? "editar" : "criar"
         } o produto.`
       );
     } finally {
       setLoading(false);
-      alert(`Produto ${initialProduct ? "editado" : "criado"} com sucesso!`);
+      toast.success(
+        `Produto ${initialProduct ? "editado" : "criado"} com sucesso!`
+      );
     }
   }
 
