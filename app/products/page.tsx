@@ -25,7 +25,7 @@ export default async function ProductsPage() {
         </Button>
       </div>
 
-      <div className="flex flex-wrap gap-6 justify-start mt-5 items-stretch">
+      <div className="flex flex-wrap gap-6 justify-center mt-5 items-stretch">
         {products.map((product) => (
           <Link key={product.id} href={`/products/${product.id}`}>
             <ProductCard
