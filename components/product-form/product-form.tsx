@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { postProduct } from "@/app/lib/products/post-product";
+import { Product } from "@/types/product";
+import { putProduct } from "@/app/lib/products/put-product";
 
-export default function ProductForm() {
+interface ProductFormProps {
+  initialProduct?: Product;
+}
+
+export default function ProductForm({ initialProduct }: ProductFormProps) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({
     id: 0,
@@ -15,6 +21,9 @@ export default function ProductForm() {
     category: "",
     image: "",
   });
+  useEffect(() => {
+    if (initialProduct) setProduct(initialProduct);
+  }, [initialProduct]);
   const router = useRouter();
 
   function handleChange(
@@ -27,16 +36,23 @@ export default function ProductForm() {
     try {
       setLoading(true);
 
-      await postProduct(product);
+      initialProduct ? await putProduct(product) : await postProduct(product);
 
       router.push("/products");
       router.refresh();
     } catch (error) {
-      console.error("Erro ao criar produto:", error);
-      alert("Ocorreu um problema ao criar o produto.");
+      console.error(
+        `Erro ao ${initialProduct ? "editar" : "criar"} produto:`,
+        error
+      );
+      alert(
+        `Ocorreu um problema ao ${
+          initialProduct ? "editar" : "criar"
+        } o produto.`
+      );
     } finally {
       setLoading(false);
-      alert("Produto criado com sucesso!");
+      alert(`Produto ${initialProduct ? "editado" : "criado"} com sucesso!`);
     }
   }
 
