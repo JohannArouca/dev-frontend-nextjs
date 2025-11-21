@@ -3,6 +3,7 @@ import { ArrowLeft, Trash, Pen } from "lucide-react";
 import { getProduct } from "@/app/lib/products/get-product";
 import { DeleteDialog } from "../../../components/delete-dialog/delete-dialog";
 import { Product } from "@/types/product";
+import { Button } from "@/components/ui/button";
 
 export default async function ProductPage(props: {
   params: Promise<{ id: number }>;
@@ -37,31 +38,32 @@ export default async function ProductPage(props: {
           <p className="leading-relaxed text-gray-700">{product.description}</p>
 
           <div className="mt-6 flex justify-end items-center gap-4">
-            <Link
-              className="flex items-center gap-2 px-4 py-2 text-yellow-700 border border-yellow-200 rounded-lg cursor-pointer hover:bg-yellow-100 transition"
-              href={`/products/${product.id}/edit`}
-            >
-              <Pen className="w-4 h-4" />
-              Editar
-            </Link>
+            <Button asChild>
+              <Link
+                className="cursor-pointer"
+                href={`/products/${product.id}/edit`}
+              >
+                <Pen className="w-4 h-4" />
+                Editar
+              </Link>
+            </Button>
 
             <DeleteDialog
               id={product.id}
               trigger={
-                <button className="flex items-center gap-2 px-4 py-2 text-red-700 border border-red-200 rounded-lg cursor-pointer hover:bg-red-100 transition">
+                <Button className="cursor-pointer" variant="destructive">
                   <Trash className="w-4 h-4" />
                   Excluir
-                </button>
+                </Button>
               }
             />
 
-            <Link
-              className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
-              href={`/products`}
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Voltar
-            </Link>
+            <Button asChild variant="outline">
+              <Link className="cursor-pointer" href={`/products`}>
+                <ArrowLeft className="w-4 h-4" />
+                Voltar
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

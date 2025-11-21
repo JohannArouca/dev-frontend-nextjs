@@ -8,6 +8,7 @@ import { Product } from "@/types/product";
 import { putProduct } from "@/app/lib/products/put-product";
 import Spinner from "../spinner/spinnet";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 interface ProductFormProps {
   initialProduct?: Product;
@@ -107,20 +108,19 @@ export default function ProductForm({ initialProduct }: ProductFormProps) {
       />
 
       <div className="mt-6 flex justify-end w-full items-center gap-4">
-        <Link
-          className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
-          href={`/products`}
-        >
-          Cancelar
-        </Link>
+        <Button asChild variant="outline">
+          <Link className="cursor-pointer" href={`/products`}>
+            Cancelar
+          </Link>
+        </Button>
 
-        <button
-          className="flex items-center gap-2 px-4 py-2 text-neutral-50 bg-neutral-950 border border-neutral-950 rounded-lg cursor-pointer hover:bg-neutral-800 transition"
+        <Button
+          className="cursor-pointer"
           onClick={handleConfirm}
           disabled={loading}
         >
           Confirmar
-        </button>
+        </Button>
       </div>
 
       {loading && (

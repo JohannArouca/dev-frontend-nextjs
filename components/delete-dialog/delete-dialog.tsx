@@ -14,6 +14,7 @@ import { deleteProduct } from "../../app/lib/products/delete-product";
 import { useRouter } from "next/navigation";
 import Spinner from "../spinner/spinnet";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 interface DeleteDialogProps {
   id: number;
@@ -56,20 +57,22 @@ export function DeleteDialog({ id, trigger }: DeleteDialogProps) {
         </DialogHeader>
 
         <DialogFooter>
-          <button
-            className="flex items-center gap-2 px-4 py-2 text-gray-800 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 transition"
+          <Button
+            className="cursor-pointer"
+            variant="outline"
             onClick={() => setOpen(false)}
           >
             Cancelar
-          </button>
+          </Button>
 
-          <button
-            className="flex items-center gap-2 px-4 py-2 text-red-700 border border-red-200 rounded-lg cursor-pointer hover:bg-red-100 transition"
+          <Button
+            className="cursor-pointer"
+            variant="destructive"
             onClick={handleConfirm}
             disabled={loading}
           >
             {loading ? "Excluindo..." : "Excluir"}
-          </button>
+          </Button>
         </DialogFooter>
 
         {loading && (
