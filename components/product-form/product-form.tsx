@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { postProduct } from "@/app/lib/products/post-product";
 import { Product } from "@/types/product";
 import { putProduct } from "@/app/lib/products/put-product";
+import Spinner from "../spinner/spinnet";
 
 interface ProductFormProps {
   initialProduct?: Product;
@@ -118,6 +119,12 @@ export default function ProductForm({ initialProduct }: ProductFormProps) {
           Confirmar
         </button>
       </div>
+
+      {loading && (
+        <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
     </form>
   );
 }

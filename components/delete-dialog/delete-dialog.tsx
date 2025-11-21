@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { deleteProduct } from "../../app/lib/products/delete-product";
 import { useRouter } from "next/navigation";
+import Spinner from "../spinner/spinnet";
 
 interface DeleteDialogProps {
   id: number;
@@ -69,6 +70,12 @@ export function DeleteDialog({ id, trigger }: DeleteDialogProps) {
             {loading ? "Excluindo..." : "Excluir"}
           </button>
         </DialogFooter>
+
+        {loading && (
+          <div className="fixed inset-0 bg-black/30 flex items-center justify-center">
+            <Spinner />
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
