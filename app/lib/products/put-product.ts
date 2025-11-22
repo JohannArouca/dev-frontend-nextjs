@@ -6,6 +6,7 @@ export async function putProduct(product: Product) {
     {
       method: "PUT",
       body: JSON.stringify(product),
+      cache: "no-store",
     }
   );
 

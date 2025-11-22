@@ -4,6 +4,7 @@ export async function postProduct(product: Product) {
   const response = await fetch("https://fakestoreapi.com/products", {
     method: "POST",
     body: JSON.stringify(product),
+    cache: "no-store",
   });
 
   if (!response.ok) {

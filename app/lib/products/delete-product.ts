@@ -1,6 +1,7 @@
 export async function deleteProduct(id: number) {
   const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
     method: "DELETE",
+    cache: "no-store",
   });
 
   if (!response.ok) {
